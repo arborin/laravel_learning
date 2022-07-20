@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_users', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('category_id')->unsigned();
+            $table->string('title', 100)->nullable();
+            $table->text('description');
+            $table->text('text');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists('posts');
     }
 };
